@@ -82,6 +82,14 @@ class Comments extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    /**
+     * @param string $content
+     * @param int $user_id
+     * @param int $material_id
+     * @return void
+     * Функция по сохранению комментария пользователя
+     * Была вынесена в модель для того что бы к ней можно было обратиться при создании или изменении комментария
+     */
     public function getNewComment(string $content, int $user_id, int $material_id)
     {
         $new_comment = new Comments();

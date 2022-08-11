@@ -34,11 +34,12 @@ class BlogsController extends Controller
 
     /**
      * Lists all Blogs models.
-     *
+     * Главная страница
      * @return string
      */
     public function actionIndex(): string
     {
+        //Подключение sear модели
         $searchModel = new BlogsSears();
         $dataProvider = $searchModel->search($this->request->queryParams, \Yii::$app->user->identity->getId());
 
@@ -50,6 +51,7 @@ class BlogsController extends Controller
 
     /**
      * Displays a single Blogs model.
+     * Страница отображения материала
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -68,6 +70,7 @@ class BlogsController extends Controller
 
     /**
      * Creates a new Blogs model.
+     * Создать блог к которому будут относиться материалы
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
@@ -93,6 +96,7 @@ class BlogsController extends Controller
 
     /**
      * Updates an existing Blogs model.
+     * Изменить название боло
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -113,7 +117,7 @@ class BlogsController extends Controller
 
     /**
      * Deletes an existing Blogs model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Удалить блог
      * @param int $id ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found

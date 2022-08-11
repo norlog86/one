@@ -92,23 +92,22 @@ class Blogs extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    /**
+     * @param $params
+     * @param int $blog_id
+     * @return ActiveDataProvider
+     * Вывести все материалы в блоге
+     */
     public function getAllMaterialsByBlog($params, int $blog_id): ActiveDataProvider
     {
         $query = Materials::find()->where(['blog_id' => $blog_id]);
 
-        // add conditions that should always apply here
-
+        //Подключить провайдер
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
         $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
 
         return $dataProvider;
     }

@@ -82,6 +82,9 @@ class SiteController extends Controller
         $materials = Materials::find()->offset($pagination->offset)
             ->limit($pagination->limit);
 
+        //Апи для поиска по названию материала и id пользователя, который создал материал
+        $materials->andFilterWhere(['ilike', 'profile.name', trim(Materials::$title)])
+                  ->andFilterWhere(['ilike', 'profile.name', trim(Materials::$user_id)]);
         /*
          * Сортировка, если при нажатии на главном экране кнопки сортировки, то передается переменна $sort
            по которой и будет выбрана та сортировка которая стоит по нужной цифрой
